@@ -1,16 +1,58 @@
-# React + Vite
+# 🚀 Help-Work Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Application web moderne développée avec React et Vite permettant de créer un dashboard interactif pour la visualisation de données.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧩 Fonctionnalités
 
-## React Compiler
+- 📊 Dashboard dynamique et interactif
+- 📈 Graphiques avec Recharts
+- 🧭 Navigation avec React Router
+- 📝 Gestion de formulaires avec React Hook Form
+- 🎨 Interface stylisée avec Sass
+- ⭐ Icônes avec Font Awesome
+- ⚡ Application rapide grâce à Vite
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Technologies utilisées
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- ⚛️ React 19
+- ⚡ Vite
+- 🧭 React Router DOM
+- 📊 Recharts
+- 📝 React Hook Form
+- 🎨 Sass
+- ⭐ Font Awesome
+- 🧹 ESLint
+
+---
+
+## 📦 Installation
+
+### 1. Cloner le projet
+
+```bash
+git clone https://github.com/LDumaillet/Help-Work.git
+cd Help-Work
+```
+
+### 2. Installer les dépendances
+
+```bash
+npm install
+```
+
+### 3. Lancer le projet en développement
+
+```bash
+npm run dev
+```
+
+👉 L'application sera accessible sur :
+http://localhost:5173
+
+---
+
+##
