@@ -1,0 +1,213 @@
+@use "../settings" as *;
+
+.dashboard-user.full {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cases-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .count {
+    background: var(--kakiColor);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: var(--whiteColor);
+  }
+}
+
+/* =========================
+   CASES CONTROLS
+========================= */
+
+.cases-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: var(--whiteColor);
+  border: solid 3px var(--kakiColor);
+  border-radius: 20px;
+  box-shadow: 0 0 5px 5px var(--blackColor);
+
+  input,
+  select {
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: solid 2px var(--kakiColor);
+    background-color: var(--whiteColor);
+    font-size: 14px;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:focus {
+      border: solid 2px var(--beigeColor);
+      box-shadow: 0 0 10px var(--beigeColor);
+    }
+
+    &:hover {
+      transform: translateY(2px);
+    }
+
+    option {
+      background-color: var(--whiteColor);
+      color: var(--blackColor);
+      padding: 10px;
+
+      &[value="En cours"] {
+        color: var(--capitalColor);
+        font-weight: 550;
+      }
+
+      &[value="Terminé"] {
+        color: var(--validColor);
+        font-weight: 550;
+      }
+
+      &[value="En attente"] {
+        color: #e67e22; // orange sympa qui va bien avec ta palette
+        font-weight: 550;
+      }
+    }
+  }
+
+  /* Layout buttons */
+
+  .layout-buttons {
+    display: flex;
+    gap: 8px;
+
+    button {
+      padding: 6px 12px;
+      border-radius: 10px;
+      border: solid 2px var(--kakiColor);
+      background-color: var(--whiteColor);
+      color: var(--blackColor);
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 600;
+
+      &:hover {
+        transform: translateY(2px);
+        background-color: var(--kakiColor);
+        color: var(--whiteColor);
+      }
+
+      &:active {
+        transform: translateY(6px);
+      }
+    }
+  }
+}
+
+/* Cards */
+
+.cases-card {
+  background-color: var(--whiteColor);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .details-btn {
+    margin-top: auto;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background: #2c3e50;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      background: #34495e;
+    }
+  }
+}
+
+/* Status badges */
+
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.en-cours {
+  background: var(--warningColor);
+}
+
+.terminé {
+  background: var(--validColor);
+}
+
+.en-attente {
+  background: var(--errorColor);
+}
+
+/* Grid system */
+
+.cases-grid.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.cases-grid.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.cases-grid.list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+  .layout-buttons {
+    button {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .cases-grid.grid-2,
+  .cases-grid.grid-3,
+  .cases-grid.grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .cases-controls {
+    flex-direction: column;
+  }
+}

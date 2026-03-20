@@ -1,0 +1,114 @@
+.connect {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+
+  h2 {
+    text-transform: uppercase;
+    text-shadow: 1px 1px 5px var(--beigeColor);
+  }
+}
+
+.form-connect {
+  margin: 5vh auto;
+  background-color: var(--whiteColor);
+  border: solid 3px var(--kakiColor);
+  border-radius: 30px;
+  box-shadow: 0 0 5px 5px var(--blackColor);
+  width: 80vw;
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+
+    .field {
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0 0 2px 2px var(--blackColor);
+      width: 50vw;
+      height: 35px;
+      text-align: center;
+      margin: 10px 0;
+
+      @media (max-width: 768px) {
+        width: 65vw;
+      }
+    }
+
+    .error-message {
+      color: var(--errorColor);
+      font-size: 1rem;
+      margin-top: 5px;
+      display: block;
+    }
+
+    .field.input-error {
+      border: 2.5px solid var(--errorColor);
+      background-color: #fff8f8;
+    }
+  }
+
+  .button-submit {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      border: none;
+      border-radius: 30px;
+      background: radial-gradient(var(--beigeColor), var(--whiteColor));
+      box-shadow: 0 0 2px 2px var(--blackColor);
+      width: 25vw;
+      color: var(--blackColor);
+      transition: 0.3s ease;
+
+      &:hover {
+        background: var(--beigeColor);
+        transform: translateY(2px);
+      }
+
+      &:active {
+        transform: translateY(10px);
+      }
+
+      @media (max-width: 768px) {
+        width: 50vw;
+      }
+    }
+  }
+}
+
+.show-btn {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--blackColor);
+}
+
+.password-rules {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    transition: color 0.2s ease;
+    text-align: center;
+  }
+}
+
+.password-rules .valid {
+  color: var(--validColor);
+}
+
+.password-rules .invalid {
+  color: var(--errorColor);
+}

@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap");
+
+:root {
+  --blackColor: #2a2c24;
+  --kakiColor: #585b4c;
+  --beigeColor: #826d62;
+  --beigeMinColor: #aa9d9f;
+  --greyColor: #d2d2eb;
+  --whiteColor: rgba(255, 255, 255, 0.5);
+  --errorColor: #ff0000;
+  --validColor: #0bda51;
+  --capitalColor: #2980b9;
+  --warningColor: #ffa500;
+}
+
+[data-theme="dark"] {
+  --blackColor: #1a1b17;
+  --kakiColor: #3f4236;
+  --beigeColor: #5e4e46;
+  --beigeMinColor: #8b7f82;
+  --greyColor: #3a3b4f;
+  --whiteColor: rgba(255, 255, 255, 0.4);
+  --errorColor: #d32f2f;
+  --validColor: #008000;
+  --capitalColor: #4354d1;
+  --warningColor: #e67f19;
+}
+
+* {
+  font-size: 62.5%;
+  margin: 0;
+  padding: 0;
+  font-family: "Science Gothic", sans-serif;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background:
+    radial-gradient(circle at 30% 20%, var(--greyColor), transparent 60%),
+    radial-gradient(circle at 70% 30%, var(--kakiColor), transparent 60%),
+    radial-gradient(circle at 40% 70%, var(--beigeMinColor), transparent 60%),
+    radial-gradient(circle at 80% 80%, var(--beigeColor), transparent 60%),
+    var(--blackColor);
+  background-blend-mode: screen;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-x: hidden;
+}
+
+.flux {
+  margin: 0 2.5vw;
+
+  @media (min-width: 1024px) {
+    margin: 0 1.5vw;
+  }
+
+  @media (min-width: 768px) {
+    margin: 0 1vw;
+  }
+}
+
+li {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+p {
+  color: var(--blackColor);
+}
+
+li {
+  color: white;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 4rem;
+
+  @media (max-width: 1024px) {
+    font-size: 3rem;
+  }
+}
+
+h2 {
+  font-size: 3rem;
+
+  @media (max-width: 1024px) {
+    font-size: 2.2rem;
+  }
+}
+
+h3 {
+  font-size: 2.4rem;
+
+  @media (max-width: 1024px) {
+    font-size: 1.8rem;
+  }
+}
+
+a,
+button {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+label {
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+p,
+input,
+option {
+  font-size: 1.6rem;
+}
+
+a,
+button,
+label,
+p,
+input {
+  @media (max-width: 1024px) {
+    font-size: 1.6rem;
+  }
+}
+
+option {
+  @media (max-width: 1024px) {
+    font-size: 1rem;
+  }
+}
+
+.positive {
+  border-left: 6px solid var(--validColor);
+}
+
+.negative {
+  border-left: 6px solid var(--errorColor);
+}
+
+.capital {
+  border-left: 6px solid var(--capitalColor);
+}

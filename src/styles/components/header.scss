@@ -1,0 +1,135 @@
+@use "../settings" as *;
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 10vh;
+  margin: 20px 0;
+  position: relative;
+
+  .navbar-logo {
+    width: 20%;
+
+    img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
+      height: 10vh;
+    }
+  }
+
+  // Bouton hamburger — caché en desktop
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 3rem;
+    cursor: pointer;
+    color: inherit;
+    margin-left: auto;
+    padding: 8px;
+    z-index: 1001;
+    transition: transform 0.2s ease;
+
+    &.active {
+      transform: rotate(90deg);
+    }
+  }
+
+  // Overlay sombre derrière le menu mobile
+  .navbar-overlay {
+    display: none;
+
+    @media (max-width: 768px) {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.2);
+      z-index: 999;
+    }
+  }
+
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10vw;
+    width: 80%;
+    height: 50px;
+    border-bottom: 2px solid white;
+
+    .navbar-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.3s;
+      background: none;
+      border: none;
+      text-decoration: none;
+
+      &:hover {
+        color: var(--whiteColor);
+        transform: translateY(2px);
+      }
+
+      &:active {
+        transform: translateY(10px);
+      }
+    }
+
+    // ── Mobile ──────────────────────────────────────────
+    @media (max-width: 768px) {
+      // Menu fermé : caché hors écran à droite
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 35vw;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 0;
+      padding: 80px 24px 24px;
+      background: var(--greyColor);
+      border-bottom: none;
+      border-left: 2px solid white;
+      z-index: 1000;
+
+      // Transition d'ouverture/fermeture
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &.active {
+        transform: translateX(0);
+      }
+
+      .navbar-link {
+        width: 100%;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--whiteColor);
+        font-size: 1.1rem;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  // Afficher le hamburger uniquement en mobile
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hamburger.active {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+    }
+  }
+}

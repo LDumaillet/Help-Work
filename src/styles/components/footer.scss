@@ -1,0 +1,46 @@
+@use "../settings" as *;
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+  justify-content: center;
+  background-color: var(--whiteColor);
+  border-radius: 30px 30px 0 0;
+  box-shadow: 0 0 5px 5px var(--blackColor);
+
+  .social-networks {
+    svg {
+      height: 25px;
+      width: auto;
+      margin: 10px 20px;
+    }
+  }
+
+  p {
+    margin: 10px 0;
+    text-align: center;
+
+    svg {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}

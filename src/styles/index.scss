@@ -1,0 +1,9 @@
+@use "./settings" as *;
+@use "./components/header";
+@use "./pages/home";
+@use "./pages/dashboard";
+@use "./pages/form-connect";
+@use "./pages/cases.scss";
+@use "./pages/stats.scss";
+@use "./components/footer.scss";
+@use "./components/menu-left.scss";
