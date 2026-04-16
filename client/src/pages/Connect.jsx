@@ -4,30 +4,48 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Header from "../components/Header";
 import { useForm } from "react-hook-form";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/useAuth";
 
 const Connect = () => {
-  // État pour afficher/masquer le mot de passe
   const [showPassword, setShowPassword] = useState(false);
-  // État pour simuler une erreur serveur (ex: mauvais identifiants)
   const [serverError, setServerError] = useState("");
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm({
-    mode: "onBlur", // Valide quand l'utilisateur quitte un champ
+    mode: "onBlur",
   });
 
   const onSubmit = async (data) => {
-    setServerError(""); // Réinitialise l'erreur serveur
+    setServerError("");
 
-    // Simulation d'un appel API (chargement de 2 secondes)
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: data.email,
+          motDePasse: data.password,
+        }),
+      });
 
-    console.log("Données envoyées :", data);
-    // Exemple de gestion d'erreur serveur après l'appel
-    // setServerError("Email ou mot de passe incorrect.");
+      const result = await res.json();
+
+      if (!res.ok) {
+        setServerError(result.message || "Email ou mot de passe incorrect.");
+        return;
+      }
+
+      login(result.user, result.token);
+      navigate("/dashboard");
+    } catch {
+      setServerError("Erreur serveur, réessaie plus tard.");
+    }
   };
 
   return (
@@ -39,7 +57,6 @@ const Connect = () => {
       </div>
 
       <div className="form-connect">
-        {/* Message d'erreur global (Serveur) */}
         {serverError && <div className="alert-error">{serverError}</div>}
 
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -49,7 +66,7 @@ const Connect = () => {
             <input
               type="email"
               id="email"
-              autoFocus // Le curseur est ici par défaut
+              autoFocus
               {...register("email", {
                 required: "L'email est obligatoire",
                 pattern: {
@@ -78,16 +95,15 @@ const Connect = () => {
                 {...register("password", {
                   required: "Le mot de passe est obligatoire",
                   minLength: {
-                    value: 10,
+                    value: 8,
                     message:
-                      "Le mot de passe doit contenir au moins 10 caractères",
+                      "Le mot de passe doit contenir au moins 8 caractères",
                   },
                 })}
                 aria-invalid={errors.password ? "true" : "false"}
                 className={`field ${errors.password ? "input-error" : ""}`}
                 placeholder="****************"
               />
-              {/* Bouton pour afficher/masquer */}
               <button
                 type="button"
                 className="show-btn"

@@ -6,17 +6,42 @@ import Registration from "./pages/Registration";
 import Dashboard from "./pages/Dashboard";
 import Cases from "./pages/Cases";
 import Stats from "./pages/Stats";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Routes publiques */}
         <Route path="/" element={<Home />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/connect" element={<Connect />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/cases" element={<Cases />} />
-        <Route path="/stats" element={<Stats />} />
+
+        {/* Routes protégées */}
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/cases"
+          element={
+            <PrivateRoute>
+              <Cases />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/stats"
+          element={
+            <PrivateRoute>
+              <Stats />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
