@@ -1,0 +1,87 @@
+/* =========================
+   MODALE DE CONFIRMATION
+========================= */
+
+.confirm-modal {
+  max-width: 420px;
+
+  .confirm-modal-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    h2 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .confirm-icon {
+      font-size: 20px;
+
+      &.danger {
+        color: var(--errorColor);
+      }
+      &.warning {
+        color: var(--warningColor);
+      }
+      &.info {
+        color: var(--capitalColor);
+      }
+    }
+  }
+}
+
+.confirm-message {
+  padding: 16px 0;
+  font-size: 15px;
+  color: var(--kakiColor);
+  opacity: 0.85;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.btn-confirm {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+
+  &.danger {
+    background: var(--errorColor);
+    &:hover {
+      background: #b71c1c;
+      transform: translateY(-2px);
+    }
+  }
+
+  &.warning {
+    background: var(--warningColor);
+    &:hover {
+      background: #e65100;
+      transform: translateY(-2px);
+    }
+  }
+
+  &.info {
+    background: var(--capitalColor);
+    &:hover {
+      background: #1565c0;
+      transform: translateY(-2px);
+    }
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+}

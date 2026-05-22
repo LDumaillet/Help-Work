@@ -1,96 +1,276 @@
 @use "../settings" as *;
 
-.head-home {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  margin: 6vh auto;
   background-color: var(--whiteColor);
+  border: solid 3px var(--kakiColor);
+  border-radius: 40px;
   box-shadow: 0 0 5px 5px var(--blackColor);
-  border-radius: 100px;
-  margin: 10vh 0;
-  width: 95vw;
+  padding: 5vh 4vw;
 
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    margin: 5vh 0;
-  }
-
-  img {
-    height: 30vh;
-    border-radius: 200px;
-    box-shadow: 0 0 5px var(--blackColor);
-    margin: 2vh 0;
-
-    @media (max-width: 1024px) {
-      height: 25vh;
-      margin: 1vh 0;
-    }
-  }
-
-  h1 {
-    text-align: center;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 5px var(--beigeColor);
-    margin: 0;
-  }
-}
-
-.body-home {
-  .content-global {
+  .hero-content {
     display: flex;
     align-items: center;
-    justify-content: space-around;
     gap: 40px;
-    margin: 20vh 0;
-
-    .content {
-      background-color: var(--whiteColor);
-      border: solid 3px var(--kakiColor);
-      border-radius: 30px;
-      box-shadow: 0 0 5px 5px var(--blackColor);
-      margin: 5vh 0;
-      padding: 3vh;
-      width: 50%;
-
-      h2 {
-        margin: 10px;
-      }
-
-      p {
-        text-align: justify;
-      }
-
-      svg {
-        margin-right: 10px;
-      }
-    }
-
-    .content-img {
-      width: 50%;
-
-      img {
-        width: 100%;
-        border-radius: 50px;
-        box-shadow: 0px 0px 5px 5px var(--blackColor);
-      }
-    }
 
     @media (max-width: 1024px) {
       flex-direction: column;
-      gap: 10px;
-      margin: 5vh 0;
+      text-align: center;
+    }
+  }
 
-      &:first-child,
-      &:nth-child(3) {
-        flex-direction: column-reverse;
+  .hero-logo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px 5px var(--blackColor);
+    object-fit: cover;
+    flex-shrink: 0;
+
+    @media (max-width: 1024px) {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h1 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      text-transform: uppercase;
+      text-shadow: 1px 1px 5px var(--beigeColor);
+      margin: 0;
+
+      span {
+        color: var(--beigeColor);
       }
+    }
 
-      .content,
-      .content-img {
-        width: 100%;
-        padding: 0;
-        margin: 1vh 0;
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      opacity: 0.85;
+      max-width: 600px;
+    }
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+
+    @media (max-width: 1024px) {
+      justify-content: center;
+    }
+  }
+}
+
+/* =========================
+   BOUTONS
+========================= */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  background: radial-gradient(var(--beigeColor), var(--kakiColor));
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  box-shadow: 0 0 5px 2px var(--blackColor);
+  transition: 0.3s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: solid 2px var(--kakiColor);
+  background: transparent;
+  color: var(--blackColor);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: 0.3s;
+
+  &:hover {
+    background: var(--kakiColor);
+    color: white;
+    transform: translateY(-3px);
+  }
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.home-features {
+  display: flex;
+  flex-direction: column;
+  gap: 6vh;
+  margin: 4vh auto;
+  width: 95vw;
+}
+
+.feature-block {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  background-color: var(--whiteColor);
+  border: solid 3px var(--kakiColor);
+  border-radius: 40px;
+  box-shadow: 0 0 5px 5px var(--blackColor);
+  padding: 4vh 4vw;
+  transition: 0.3s;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+
+  @media (max-width: 1024px) {
+    flex-direction: column !important;
+    padding: 3vh 5vw;
+    gap: 20px;
+  }
+
+  .feature-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: radial-gradient(var(--beigeColor), var(--kakiColor));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      margin: 0;
+    }
+
+    p {
+      line-height: 1.7;
+      opacity: 0.85;
+      text-align: justify;
+    }
+  }
+
+  .feature-img {
+    flex: 1;
+
+    img {
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 0 5px 5px var(--blackColor);
+      object-fit: cover;
+    }
+  }
+}
+
+/* =========================
+   FEATURE LIST
+========================= */
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 500;
+
+    svg {
+      color: var(--validColor);
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+  }
+}
+
+/* =========================
+   CTA
+========================= */
+
+.home-cta {
+  margin: 6vh auto;
+  width: 95vw;
+
+  .cta-card {
+    background: radial-gradient(
+      ellipse at top,
+      var(--beigeColor),
+      var(--kakiColor)
+    );
+    border-radius: 40px;
+    padding: 6vh 4vw;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 0 5px 5px var(--blackColor);
+
+    h2 {
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      color: white;
+      margin: 0;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 16px;
+      max-width: 500px;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--kakiColor);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        background: var(--greyColor);
       }
     }
   }

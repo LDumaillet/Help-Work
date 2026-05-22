@@ -7,6 +7,10 @@ import Dashboard from "./pages/Dashboard";
 import Cases from "./pages/Cases";
 import Stats from "./pages/Stats";
 import PrivateRoute from "./components/PrivateRoute";
+import CaseDetail from "./pages/CaseDetail";
+import Profile from "./pages/Profile";
+import PublicRoute from "./components/PublicRoute";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -14,8 +18,22 @@ function App() {
       <Routes>
         {/* Routes publiques */}
         <Route path="/" element={<Home />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/connect" element={<Connect />} />
+        <Route
+          path="/registration"
+          element={
+            <PublicRoute>
+              <Registration />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/connect"
+          element={
+            <PublicRoute>
+              <Connect />
+            </PublicRoute>
+          }
+        />
 
         {/* Routes protégées */}
         <Route
@@ -42,6 +60,23 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route
+          path="/cases/:id"
+          element={
+            <PrivateRoute>
+              <CaseDetail />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

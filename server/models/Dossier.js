@@ -1,4 +1,3 @@
-// models/Dossier.js
 const mongoose = require("mongoose");
 
 const dossierSchema = new mongoose.Schema(
@@ -12,25 +11,17 @@ const dossierSchema = new mongoose.Schema(
     client: { type: String, default: "" },
     statut: {
       type: String,
-      enum: ["en_cours", "termine", "archive"],
+      enum: ["en_cours", "attente", "termine", "archive"],
       default: "en_cours",
     },
     dateOuverture: { type: Date, default: Date.now },
     dateEcheance: { type: Date },
-    tempsTotal: { type: Number, default: 0 }, // en heures
-    coutTotal: { type: Number, default: 0 }, // en €
-    revenuFinal: { type: Number, default: 0 }, // en €
-    rentabilite: { type: Number, default: 0 }, // % calculé automatiquement
+    tempsTotal: { type: Number, default: 0 },
+    coutTotal: { type: Number, default: 0 },
+    revenuFinal: { type: Number, default: 0 },
+    rentabilite: { type: Number, default: 0 },
   },
   { timestamps: true },
 );
-
-// Calcul auto de la rentabilité avant save
-dossierSchema.pre("save", function (next) {
-  if (this.coutTotal > 0) {
-    this.rentabilite =
-      ((this.revenuFinal - this.coutTotal) / this.coutTotal) * 100;
-  }
-});
 
 module.exports = mongoose.model("Dossier", dossierSchema);

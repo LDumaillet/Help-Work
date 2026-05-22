@@ -1,0 +1,56 @@
+.not-found-page {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.not-found-card {
+  background: var(--whiteColor);
+  border: solid 3px var(--kakiColor);
+  border-radius: 30px;
+  box-shadow: 0 0 5px 5px var(--blackColor);
+  padding: 60px 40px;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  .not-found-code {
+    font-size: clamp(5rem, 15vw, 9rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--kakiColor), var(--beigeColor));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    animation: popIn 0.6s ease;
+  }
+
+  h1 {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    text-transform: uppercase;
+    text-shadow: 1px 1px 5px var(--beigeColor);
+    margin: 0;
+  }
+
+  p {
+    color: var(--kakiColor);
+    opacity: 0.8;
+    font-size: 15px;
+    margin: 0;
+    max-width: 350px;
+  }
+
+  .not-found-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}

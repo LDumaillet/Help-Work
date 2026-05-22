@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useAuth } from "../context/useAuth";
 import {
   faFolderClosed,
   faTable,
@@ -12,12 +13,15 @@ import {
 
 const MenuLeft = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const [isTablet, setIsTablet] = useState(false);
+  const [isTablet, setIsTablet] = useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia("(max-width: 1300px)").matches
+      : false,
+  );
+  const { user } = useAuth();
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 1024px)");
-
-    setIsTablet(mediaQuery.matches);
+    const mediaQuery = window.matchMedia("(max-width: 1300px)");
 
     const handleChange = (e) => setIsTablet(e.matches);
     mediaQuery.addEventListener("change", handleChange);
@@ -37,8 +41,25 @@ const MenuLeft = () => {
       <div className={`nav-dashboard ${isOpen ? "open" : "closed"}`}>
         <ul>
           <li>
-            <img src="/img-user.png" alt="Image de l'utilisateur" />
-            <span className="link-text">Pseudo</span>
+            {user ? (
+              <>
+                {user.avatar && (
+                  <a href="/profile">
+                    <img
+                      src={user.avatar}
+                      alt="avatar"
+                      className="menu-left-avatar"
+                    />
+                  </a>
+                )}
+                <span className="link-text">{user.nom}</span>
+              </>
+            ) : (
+              <>
+                <img src="/img-user.png" alt="Image utilisateur" />
+                <span className="link-text">Pseudo</span>
+              </>
+            )}
           </li>
           <li>
             <a href="/dashboard">

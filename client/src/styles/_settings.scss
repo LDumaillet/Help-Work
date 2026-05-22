@@ -11,6 +11,7 @@
   --validColor: #0bda51;
   --capitalColor: #2980b9;
   --warningColor: #ffa500;
+  --lossColor: #ffff00;
 }
 
 [data-theme="dark"] {
@@ -24,6 +25,7 @@
   --validColor: #008000;
   --capitalColor: #4354d1;
   --warningColor: #e67f19;
+  --lossColor: #ffd70099;
 }
 
 * {
@@ -39,6 +41,22 @@ html {
   width: 100%;
   min-height: 100%;
   overflow-x: hidden;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
 }
 
 body {
@@ -126,7 +144,8 @@ label {
 
 p,
 input,
-option {
+option,
+strong {
   font-size: 1.6rem;
 }
 
@@ -156,4 +175,74 @@ option {
 
 .capital {
   border-left: 6px solid var(--capitalColor);
+}
+
+.en_cours {
+  background: var(--warningColor);
+}
+
+.attente {
+  background: var(--capitalColor);
+}
+
+.termine {
+  background: var(--validColor);
+}
+
+.archive {
+  background: var(--errorColor);
+}
+
+/* =========================
+   SCROLLBAR PERSONNALISÉE
+========================= */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--kakiColor) transparent;
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--kakiColor);
+  border-radius: 20px;
+  transition: 0.3s;
+
+  &:hover {
+    background: var(--beigeColor);
+  }
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Scrollbar spécifique au panneau de notifications */
+.notif-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.notif-list::-webkit-scrollbar-thumb {
+  background: var(--beigeMinColor);
+  border-radius: 20px;
+}
+
+/* Scrollbar pour les modales */
+.modal::-webkit-scrollbar {
+  width: 4px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: var(--kakiColor);
+  border-radius: 20px;
 }

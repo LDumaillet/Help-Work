@@ -1,15 +1,31 @@
 const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
-  const token = req.header("Authorization")?.replace("Bearer ", "");
-  if (!token)
-    return res.status(401).json({ message: "Accès refusé, token manquant" });
+  const authHeader = req.header("Authorization");
+
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({
+      message: "Accès refusé, token manquant",
+    });
+  }
+
+  const token = authHeader.replace("Bearer ", "");
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
     req.user = decoded;
+
     next();
-  } catch {
-    res.status(401).json({ message: "Token invalide" });
+  } catch (err) {
+    if (err.name === "TokenExpiredError") {
+      return res.status(401).json({
+        message: "Session expirée, veuillez vous reconnecter",
+      });
+    }
+
+    return res.status(401).json({
+      message: "Token invalide",
+    });
   }
 };

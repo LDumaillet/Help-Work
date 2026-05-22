@@ -6,7 +6,6 @@
     overflow: hidden;
     transition: width 0.3s ease;
 
-    // ✅ Au même niveau que .nav-dashboard, pas imbriqué dedans
     &.closed {
       width: 0;
       animation: bounceClose 0.5s ease forwards;
@@ -96,7 +95,7 @@
     }
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1300px) {
     flex-direction: column;
     align-items: center;
     height: auto;
@@ -118,7 +117,7 @@
       ul {
         flex-direction: row;
         width: 100%;
-        height: 10vh;
+        height: 12.5vh;
         margin: 0;
         border-top-left-radius: 30px;
         border-bottom-left-radius: 0px;
@@ -192,25 +191,24 @@
   }
 }
 
-// ✅ Keyframes tablette en hauteur
 @keyframes bounceOpen-tablet {
   0% {
     height: 0;
   }
   60% {
-    height: 12vh;
+    height: 15vh;
   }
   100% {
-    height: 10vh;
+    height: 12.5vh;
   }
 }
 
 @keyframes bounceClose-tablet {
   0% {
-    height: 10vh;
+    height: 12.5vh;
   }
   60% {
-    height: 12vh;
+    height: 15vh;
   }
   100% {
     height: 0;
