@@ -1,0 +1,239 @@
+.cookie-overlay {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+.cookie-banner {
+  background: #2a2c24;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 24px;
+  max-width: 680px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  animation: slideUp 0.4s ease;
+
+  @media (max-width: 768px) {
+    border-radius: 20px 20px 0 0;
+    padding: 20px 16px;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.cookie-header {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+
+  .cookie-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--kakiColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    color: white;
+  }
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+  }
+}
+
+.cookie-details {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cookie-category {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  .cookie-category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    gap: 12px;
+
+    strong {
+      display: block;
+      font-size: 14px;
+      color: white;
+    }
+
+    span {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+.cookie-toggle {
+  &.always-on {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--validColor);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+.cookie-toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+  cursor: pointer;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .toggle-slider {
+      background: var(--validColor);
+
+      &::before {
+        transform: translateX(20px);
+      }
+    }
+  }
+
+  .toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    transition: 0.3s;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: white;
+      top: 3px;
+      left: 3px;
+      transition: 0.3s;
+    }
+  }
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
+}
+
+.cookie-btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  &.details {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+    margin-right: auto;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    @media (max-width: 480px) {
+      margin-right: 0;
+    }
+  }
+
+  &.reject {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  &.accept {
+    background: var(--kakiColor);
+    color: white;
+
+    &:hover {
+      background: var(--beigeColor);
+      transform: translateY(-1px);
+    }
+  }
+
+  &.save {
+    background: var(--validColor);
+    color: white;
+
+    &:hover {
+      background: #09c248;
+      transform: translateY(-1px);
+    }
+  }
+}

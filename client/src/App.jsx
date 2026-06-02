@@ -11,6 +11,8 @@ import CaseDetail from "./pages/CaseDetail";
 import Profile from "./pages/Profile";
 import PublicRoute from "./components/PublicRoute";
 import NotFound from "./pages/NotFound";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   return (
@@ -31,6 +33,24 @@ function App() {
           element={
             <PublicRoute>
               <Connect />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          path="/forgot-password"
+          element={
+            <PublicRoute>
+              <ForgotPassword />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          path="/reset-password"
+          element={
+            <PublicRoute>
+              <ResetPassword />
             </PublicRoute>
           }
         />
