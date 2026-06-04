@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+#Racine
 node_modules
 dist
 dist-ssr
@@ -23,3 +24,11 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Client
+client/node_modules/
+client/dist/
+
+# Server
+server/node_modules/
+server/.env
