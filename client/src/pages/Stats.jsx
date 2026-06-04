@@ -22,6 +22,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
 import SkeletonCard from "../components/SkeletonCard";
 import SkeletonKpi from "../components/SkeletonKpi";
+import API_URL from "../config";
 
 const Stats = () => {
   const [dossiers, setDossiers] = useState([]);
@@ -37,7 +38,7 @@ const Stats = () => {
   useEffect(() => {
     const fetchDossiers = async () => {
       try {
-        const res = await fetch("/api/dossiers", {
+        const res = await fetch(`${API_URL}/api/dossiers`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();

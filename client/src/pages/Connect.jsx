@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import Footer from "../components/Footer";
 import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
+import API_URL from "../config";
 
 const Connect = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -37,7 +38,7 @@ const Connect = () => {
   const onSubmit = async (data) => {
     setServerError("");
     try {
-      const res = await fetch("/api/auth/login", {
+      const res = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: data.email, motDePasse: data.password }),
@@ -97,7 +98,7 @@ const Connect = () => {
     setOtpError("");
     setOtpLoading(true);
     try {
-      const res = await fetch("/api/auth/verify-otp", {
+      const res = await fetch(`${API_URL}/api/auth/verify-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, code }),

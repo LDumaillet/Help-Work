@@ -22,6 +22,7 @@ import autoTable from "jspdf-autotable";
 import ConfirmModal from "../components/ConfirmModal";
 import SkeletonCard from "../components/SkeletonCard";
 import SkeletonKpi from "../components/SkeletonKpi";
+import API_URL from "../config";
 
 const CaseDetail = () => {
   const { id } = useParams();
@@ -115,7 +116,7 @@ const CaseDetail = () => {
     const heuresSupplementaires = seconds / 3600;
     const nouveauTemps = (dossier.tempsTotal || 0) + heuresSupplementaires;
     try {
-      await fetch(`/api/dossiers/${id}`, {
+      await fetch(`${API_URL}/api/dossiers/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -182,13 +183,13 @@ const CaseDetail = () => {
   const fetchDossier = async () => {
     try {
       const [resDossier, resOps, resEtapes] = await Promise.all([
-        fetch(`/api/dossiers/${id}`, {
+        fetch(`${API_URL}/api/dossiers/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch(`/api/dossiers/${id}/operations`, {
+        fetch(`${API_URL}/api/dossiers/${id}/operations`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch(`/api/dossiers/${id}/etapes`, {
+        fetch(`${API_URL}/api/dossiers/${id}/etapes`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);
@@ -230,7 +231,7 @@ const CaseDetail = () => {
     setErreur("");
     setSuccès("");
     try {
-      const res = await fetch(`/api/dossiers/${id}`, {
+      const res = await fetch(`${API_URL}/api/dossiers/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -259,7 +260,7 @@ const CaseDetail = () => {
         closeConfirm();
 
         try {
-          const res = await fetch(`/api/dossiers/${id}`, {
+          const res = await fetch(`${API_URL}/api/dossiers/${id}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
@@ -299,7 +300,7 @@ const CaseDetail = () => {
     e.preventDefault();
     setOpLoading(true);
     try {
-      const res = await fetch(`/api/dossiers/${id}/operations`, {
+      const res = await fetch(`${API_URL}/api/dossiers/${id}/operations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -334,10 +335,13 @@ const CaseDetail = () => {
       onConfirm: async () => {
         closeConfirm();
         try {
-          const res = await fetch(`/api/dossiers/${id}/operations/${opId}`, {
-            method: "DELETE",
-            headers: { Authorization: `Bearer ${token}` },
-          });
+          const res = await fetch(
+            `${API_URL}/api/dossiers/${id}/operations/${opId}`,
+            {
+              method: "DELETE",
+              headers: { Authorization: `Bearer ${token}` },
+            },
+          );
           const data = await res.json();
           if (!res.ok) throw new Error(data.message);
           setOperations((prev) => prev.filter((o) => o._id !== opId));
@@ -353,7 +357,7 @@ const CaseDetail = () => {
     e.preventDefault();
     setEtapeLoading(true);
     try {
-      const res = await fetch(`/api/dossiers/${id}/etapes`, {
+      const res = await fetch(`${API_URL}/api/dossiers/${id}/etapes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -375,14 +379,17 @@ const CaseDetail = () => {
 
   const handleToggleEtape = async (etape) => {
     try {
-      const res = await fetch(`/api/dossiers/${id}/etapes/${etape._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const res = await fetch(
+        `${API_URL}/api/dossiers/${id}/etapes/${etape._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ faite: !etape.faite }),
         },
-        body: JSON.stringify({ faite: !etape.faite }),
-      });
+      );
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
       setEtapes((prev) => prev.map((e) => (e._id === etape._id ? data : e)));
@@ -399,10 +406,13 @@ const CaseDetail = () => {
       onConfirm: async () => {
         closeConfirm();
         try {
-          const res = await fetch(`/api/dossiers/${id}/etapes/${etapeId}`, {
-            method: "DELETE",
-            headers: { Authorization: `Bearer ${token}` },
-          });
+          const res = await fetch(
+            `${API_URL}/api/dossiers/${id}/etapes/${etapeId}`,
+            {
+              method: "DELETE",
+              headers: { Authorization: `Bearer ${token}` },
+            },
+          );
           if (!res.ok) throw new Error();
           setEtapes((prev) => prev.filter((e) => e._id !== etapeId));
         } catch {

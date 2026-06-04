@@ -11,6 +11,7 @@ import {
   faLock,
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
+import API_URL from "../config";
 
 const Profile = () => {
   const auth = useAuth();
@@ -48,7 +49,7 @@ const Profile = () => {
 
     const fetchProfile = async () => {
       try {
-        const res = await fetch("/api/auth/me", {
+        const res = await fetch(`${API_URL}/api/auth/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -95,7 +96,7 @@ const Profile = () => {
       setAvatarPreview(avatarBase64);
 
       // Sauvegarde immédiate en base de données
-      const res = await fetch("/api/auth/me", {
+      const res = await fetch(`${API_URL}/api/auth/me`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -129,7 +130,7 @@ const Profile = () => {
     setProfileLoading(true);
 
     try {
-      const res = await fetch("/api/auth/me", {
+      const res = await fetch(`${API_URL}/api/auth/me`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -168,7 +169,7 @@ const Profile = () => {
 
     setPasswordLoading(true);
     try {
-      const res = await fetch("/api/auth/me/password", {
+      const res = await fetch(`${API_URL}/api/auth/me/password`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

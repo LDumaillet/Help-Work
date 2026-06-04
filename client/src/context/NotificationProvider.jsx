@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { NotificationContext } from "./NotificationContext";
 import { useAuth } from "./useAuth";
+import API_URL from "../config";
 
 export const NotificationProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
@@ -55,7 +56,7 @@ export const NotificationProvider = ({ children }) => {
   const fetchNotifications = useCallback(async () => {
     if (!token) return;
     try {
-      const res = await fetch("/api/dossiers", {
+      const res = await fetch(`${API_URL}/api/dossiers`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const dossiers = await res.json();

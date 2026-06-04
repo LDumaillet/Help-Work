@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import SkeletonCard from "../components/SkeletonCard";
 import SkeletonKpi from "../components/SkeletonKpi";
+import API_URL from "../config";
 
 const Dashboard = () => {
   const [layout, setLayout] = useState("grid-3");
@@ -31,10 +32,10 @@ const Dashboard = () => {
   const fetchData = async () => {
     try {
       const [resDossiers, resStats] = await Promise.all([
-        fetch("/api/dossiers", {
+        fetch(`${API_URL}/api/dossiers`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch("/api/dossiers/stats/global", {
+        fetch(`${API_URL}/api/dossiers/stats/global`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);
@@ -81,7 +82,7 @@ const Dashboard = () => {
     setFormLoading(true);
 
     try {
-      const res = await fetch("/api/dossiers", {
+      const res = await fetch(`${API_URL}/api/dossiers`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

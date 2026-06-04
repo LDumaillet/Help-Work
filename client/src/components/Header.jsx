@@ -14,6 +14,7 @@ import ThemeToogle from "./ThemeToogle";
 import { useAuth } from "../context/useAuth";
 import { useNotifications } from "../context/useNotifications";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../config";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -62,7 +63,7 @@ const Header = () => {
     const timeout = setTimeout(async () => {
       setSearchLoading(true);
       try {
-        const res = await fetch("/api/dossiers", {
+        const res = await fetch(`${API_URL}/api/dossiers`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const dossiers = await res.json();

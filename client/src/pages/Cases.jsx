@@ -9,6 +9,7 @@ import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import ConfirmModal from "../components/ConfirmModal";
 import SkeletonCard from "../components/SkeletonCard";
 import SkeletonKpi from "../components/SkeletonKpi";
+import API_URL from "../config";
 const ITEMS_PER_PAGE = 9;
 
 const Cases = () => {
@@ -89,7 +90,7 @@ const Cases = () => {
     setFormErreur("");
     setFormLoading(true);
     try {
-      const res = await fetch("/api/dossiers", {
+      const res = await fetch(`${API_URL}/api/dossiers`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -137,7 +138,7 @@ const Cases = () => {
       onConfirm: async () => {
         closeConfirm();
         try {
-          const res = await fetch(`/api/dossiers/${id}`, {
+          const res = await fetch(`${API_URL}/api/dossiers/${id}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",

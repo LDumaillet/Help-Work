@@ -13,6 +13,7 @@ import {
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, Link } from "react-router-dom";
+import API_URL from "../config";
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -69,7 +70,7 @@ const Registration = () => {
         });
       }
 
-      const res = await fetch("/api/auth/register", {
+      const res = await fetch(`${API_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
