@@ -1,3 +1,5 @@
+import React from "react";
+
 const SkeletonKpi = ({ count = 4 }) => {
   return (
     <div className="skeleton-kpi-grid">

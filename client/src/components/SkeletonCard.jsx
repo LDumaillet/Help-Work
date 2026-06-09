@@ -1,3 +1,5 @@
+import React from "react";
+
 const SkeletonCard = ({ lines = 3, height = "auto" }) => {
   return (
     <div className="skeleton-card" style={{ height }}>
