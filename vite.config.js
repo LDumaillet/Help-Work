@@ -5,6 +5,16 @@ export default defineConfig({
   plugins: [react()],
   build: {
     sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ["react", "react-dom"],
+          router: ["react-router-dom"],
+          charts: ["recharts"],
+          pdf: ["jspdf", "jspdf-autotable"],
+        },
+      },
+    },
   },
   server: {
     proxy: {
