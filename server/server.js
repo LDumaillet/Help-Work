@@ -10,20 +10,17 @@ connectDB();
 
 const app = express();
 
-// ─── CORS doit être AVANT helmet ──────────────────────────
 app.use(
   cors({
-    origin: true, // ← accepte toutes les origines temporairement
+    origin: true,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 
-// ─── OPTIONS preflight ────────────────────────────────────
-app.options("/(.*)", cors());
+// ← app.options supprimé
 
-// ─── Helmet APRÈS cors ────────────────────────────────────
 app.use(
   helmet({
     crossOriginResourcePolicy: false,
