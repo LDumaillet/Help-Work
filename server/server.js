@@ -10,23 +10,13 @@ connectDB();
 
 const app = express();
 
-// CORS — accepte localhost en dev et l'URL Vercel en prod
-const allowedOrigins = [
-  "http://localhost:5173",
-  process.env.CLIENT_URL,
-  "https://help-work.vercel.app",
-  "https://help-work-dwhlo2qtr-lu-kd-s-projects.vercel.app",
-].filter(Boolean);
+const allowedOrigins = ["http://localhost:5173", process.env.CLIENT_URL].filter(
+  Boolean,
+);
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Non autorisé par CORS"));
-      }
-    },
+    origin: true,
     credentials: true,
   }),
 );
