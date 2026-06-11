@@ -10,19 +10,28 @@ connectDB();
 
 const app = express();
 
-const allowedOrigins = ["http://localhost:5173", process.env.CLIENT_URL].filter(
-  Boolean,
-);
-
+// ─── CORS doit être AVANT helmet ──────────────────────────
 app.use(
   cors({
-    origin: true,
+    origin: true, // ← accepte toutes les origines temporairement
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 
-app.use(express.json({ limit: "10mb" })); // ← 10mb pour les avatars base64
-app.use(helmet());
+// ─── OPTIONS preflight ────────────────────────────────────
+app.options("*", cors());
+
+// ─── Helmet APRÈS cors ────────────────────────────────────
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+    crossOriginOpenerPolicy: false,
+  }),
+);
+
+app.use(express.json({ limit: "10mb" }));
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
