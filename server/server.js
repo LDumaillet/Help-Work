@@ -21,19 +21,6 @@ app.use(
   }),
 );
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Non autorisé par CORS"));
-      }
-    },
-    credentials: true,
-  }),
-);
-
 app.use(express.json({ limit: "10mb" })); // ← 10mb pour les avatars base64
 app.use(helmet());
 
