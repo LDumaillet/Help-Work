@@ -1,4 +1,7 @@
 const express = require("express");
+
+app.set("trust proxy", 1);
+
 const dotenv = require("dotenv");
 const cors = require("cors");
 const helmet = require("helmet");
