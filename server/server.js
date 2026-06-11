@@ -1,7 +1,4 @@
 const express = require("express");
-
-app.set("trust proxy", 1);
-
 const dotenv = require("dotenv");
 const cors = require("cors");
 const helmet = require("helmet");
@@ -9,9 +6,12 @@ const rateLimit = require("express-rate-limit");
 const connectDB = require("./db");
 
 dotenv.config();
-connectDB();
 
 const app = express();
+
+app.set("trust proxy", 1);
+
+connectDB();
 
 app.use(
   cors({
